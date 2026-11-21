@@ -1,0 +1,1190 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khansa Shabihah — Portfolio</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+
+  <style>
+    /* DESIGN TOKENS */
+    :root {
+      --bg: #FFFFFF;
+      --bg-soft: #F7F8F6;
+      --surface: #FFFFFF;
+      --ink: #111315;
+      --ink-muted: #686D76;
+      --accent: #1E3A2F;
+      --accent-soft: #E8EFEA;
+      --border: rgba(17, 19, 21, 0.10);
+      --radius-pill: 9999px;
+      --radius-card: 20px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* BASE & RESET */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* TYPOGRAPHY UTILITIES */
+    .editorial-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.08;
+    }
+
+    .editorial-title span {
+      font-weight: 300;
+      font-style: italic;
+      color: #333a36;
+    }
+
+    .editorial-title strong {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .sec-label {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--ink-muted);
+      margin-bottom: 14px;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    /* BUTTONS */
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: var(--radius-pill);
+      background: var(--ink);
+      color: #FFFFFF;
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: transform 0.35s var(--ease), background-color 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+    }
+
+    .btn-pill:hover {
+      transform: translateY(-2px);
+      background: var(--accent);
+      color: #FFFFFF;
+      box-shadow: 0 10px 24px -8px rgba(30, 58, 47, 0.3);
+    }
+
+    .btn-pill.ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--border);
+    }
+
+    .btn-pill.ghost:hover {
+      background: var(--bg-soft);
+      border-color: rgba(17, 19, 21, 0.25);
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -6px rgba(0,0,0,0.06);
+    }
+
+    /* LAYOUT CONTAINERS */
+    .sec {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 110px 6vw;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+      will-change: opacity, transform;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* TOP NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 76px;
+      padding: 0 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(17, 19, 21, 0.05);
+      z-index: 100;
+      transition: background-color 0.3s ease;
+    }
+
+    .brand-logo {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sparkle {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      transition: color 0.25s ease;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--ink);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      background: #FFFFFF;
+      padding-top: 76px;
+    }
+
+    .hero-content {
+      padding-top: 60px;
+      text-align: center;
+      position: relative;
+      z-index: 5;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-inline: 24px;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-muted);
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .hero-title {
+      font-size: clamp(44px, 6.2vw, 84px);
+      margin-bottom: 22px;
+      color: var(--ink);
+    }
+
+    .hero-subtitle {
+      max-width: 580px;
+      margin: 0 auto 34px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink-muted);
+      font-weight: 400;
+    }
+
+    /* PAINTERLY VALLEY ART STAGE */
+    .hero-art {
+      position: relative;
+      width: 100%;
+      height: clamp(340px, 48vh, 560px);
+      margin-top: auto;
+      overflow: hidden;
+      z-index: 1;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    /* Seamless blend mask on top */
+    .hero-art::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 42%;
+      background: linear-gradient(to bottom, #FFFFFF 0%, rgba(255, 255, 255, 0.88) 35%, rgba(255, 255, 255, 0) 100%);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .hero-art-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 38%;
+      animation: valleyDrift 24s ease-in-out infinite alternate;
+      will-change: transform;
+      transform-origin: center center;
+    }
+
+    @keyframes valleyDrift {
+      0% {
+        transform: scale(1.04) translateX(-1.5%);
+      }
+      100% {
+        transform: scale(1.1) translateX(1.5%);
+      }
+    }
+
+    /* Floating light & pollen motes */
+    .hero-mote {
+      position: absolute;
+      background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,245,215,0.4) 60%, transparent 100%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 2;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(110%) translateX(0);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.8;
+      }
+      85% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-80px) translateX(35px);
+        opacity: 0;
+      }
+    }
+
+    /* ABOUT & EDUCATION */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .editorial-bio h2 {
+      font-size: clamp(34px, 4vw, 52px);
+      margin-bottom: 26px;
+    }
+
+    .bio-text-primary {
+      font-size: 16.5px;
+      color: var(--ink);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .bio-text-secondary {
+      font-size: 15.5px;
+      color: var(--ink-muted);
+      line-height: 1.8;
+    }
+
+    .metadata-strip {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 36px;
+    }
+
+    .meta-item .meta-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+      display: block;
+      font-weight: 600;
+    }
+
+    .meta-item .meta-value {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .meta-item a.meta-value:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .education-card {
+      background: var(--bg-soft);
+      border-radius: var(--radius-card);
+      padding: 38px 34px;
+      border: 1px solid var(--border);
+      position: sticky;
+      top: 104px;
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 24px;
+      padding-left: 20px;
+      border-left: 1.5px solid rgba(30, 58, 47, 0.18);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -26px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg-soft);
+    }
+
+    .period-badge {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 10px;
+    }
+
+    .timeline-item h4 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .timeline-sub {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      margin-bottom: 6px;
+    }
+
+    .timeline-desc {
+      font-size: 13.5px;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    /* EXPERIENCE & RECOGNITION */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+    }
+
+    .exp-row {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exp-row:first-of-type {
+      padding-top: 8px;
+    }
+
+    .exp-date {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .exp-title {
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .exp-org {
+      color: var(--ink-muted);
+      font-weight: 400;
+    }
+
+    .exp-desc {
+      font-size: 14.5px;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+
+    .recognition-card {
+      background: #FAF9F5;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 34px;
+      position: relative;
+    }
+
+    .rec-tag {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .rec-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .rec-detail {
+      font-size: 14.5px;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    /* PROJECTS SHOWCASE */
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.45s var(--ease);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proj-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -15px rgba(17, 19, 21, 0.08);
+      border-color: rgba(30, 58, 47, 0.25);
+    }
+
+    .proj-thumb {
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: var(--accent-soft);
+      position: relative;
+    }
+
+    .proj-thumb-art {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease);
+    }
+
+    .proj-card:hover .proj-thumb-art {
+      transform: scale(1.05);
+    }
+
+    .proj-tag-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(8px);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      color: var(--ink);
+    }
+
+    .proj-body {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .proj-role {
+      text-transform: uppercase;
+      font-size: 11.5px;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .proj-title {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.18;
+    }
+
+    .proj-tagline {
+      font-size: 14.5px;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .pill-tag {
+      font-size: 12px;
+      background: var(--bg-soft);
+      color: var(--ink);
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+    }
+
+    .proj-link {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.25s ease;
+    }
+
+    .proj-link:hover {
+      gap: 10px;
+      color: var(--ink);
+    }
+
+    /* SKILLS & BENTO GRID */
+    .skills-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 56px;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .bento-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 34px 28px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.35s var(--ease), border-color 0.35s var(--ease);
+    }
+
+    .bento-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(30, 58, 47, 0.25);
+    }
+
+    .bento-icon-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .bento-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .bento-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .bento-pill {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      color: var(--ink);
+      font-weight: 500;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .bento-pill:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* CONTACT SECTION */
+    .contact-container {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: clamp(48px, 6vw, 84px) 6vw;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #2D5A3C 0%, #7BA05B 50%, #D4A359 100%);
+    }
+
+    .contact-title {
+      font-size: clamp(36px, 5vw, 64px);
+      max-width: 720px;
+      margin: 0 auto 18px;
+    }
+
+    .contact-subtitle {
+      font-size: 16px;
+      color: var(--ink-muted);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .contact-btn-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 36px 6vw 52px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13.5px;
+      color: var(--ink-muted);
+    }
+
+    /* RESPONSIVE BREAKPOINTS */
+    @media (max-width: 860px) {
+      .navbar .nav-links {
+        display: none;
+      }
+
+      .sec {
+        padding: 80px 6vw;
+      }
+
+      .about-grid,
+      .experience-grid,
+      .projects-grid,
+      .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .education-card {
+        position: static;
+      }
+
+      .hero-content {
+        padding-top: 40px;
+      }
+
+      .hero-art {
+        height: 42vh;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-content {
+        padding-top: 24px;
+      }
+
+      .contact-btn-row {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .contact-btn-row .btn-pill {
+        width: 100%;
+      }
+    }
+
+    /* MOTION PREFERENCE */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .hero-art-img,
+      .hero-mote {
+        animation: none !important;
+      }
+
+      .reveal {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" role="banner">
+    <a href="#hero" class="brand-logo" aria-label="Khansa Shabihah Home">
+      Khansa<span class="brand-sparkle"></span>
+    </a>
+
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+      </ul>
+    </nav>
+
+    <a href="#contact" class="btn-pill">Get in Touch</a>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero" aria-label="Hero Section">
+      <div class="hero-content reveal in">
+        <span class="hero-eyebrow">JAKARTA · INFORMATICS ENGINEERING &amp; VISUAL DESIGN</span>
+        <h1 class="editorial-title hero-title">
+          <span>Hello, I'm</span> <strong>Khansa.</strong><br>
+          <span>Crafting</span> <strong>visual clarity</strong> <span>&amp;</span> <strong>code.</strong>
+        </h1>
+        <p class="hero-subtitle">
+          Informatics Engineering student with two terms of experience in visual documentation &amp; digital communication. Blending structured TypeScript logic with thoughtful design.
+        </p>
+        <a href="#about" class="btn-pill">Explore Portfolio ↓</a>
+      </div>
+
+      <!-- PAINTERLY LANDSCAPE ART STAGE -->
+      <div class="hero-art" aria-hidden="true"><img src="https://lh3.googleusercontent.com/aida/ALJJyrA7wzszkeBaMSB3GhScg_v7H1eJs9rZYTns-x0FTXKbqk6w5HKrkI0PW9ru1fe9ZK__kPjZC3GyRFokYheXj32oaMqC8vLh4o_6WMMNgvzLJ-BsoxywuXuEahk7i9oecTf170QIzALCBOVBys2BXzwdX7fFjjB0xEvyS89d3ac6ht-WzbPEPyv6uy_IcYX5OsLjlz8LGH54XOYvdAx09nKVWkcfQskpJYdQOe2vkApf" alt="Ghibli-inspired painterly lush valley landscape" class="hero-art-img"><span class="hero-mote" style="width: 5px; height: 5px; left: 18%; bottom: 12%; animation-duration: 14s; animation-delay: 1s;"></span><span class="hero-mote" style="width: 7px; height: 7px; left: 32%; bottom: 8%; animation-duration: 18s; animation-delay: 3s;"></span><span class="hero-mote" style="width: 4px; height: 4px; left: 48%; bottom: 15%; animation-duration: 16s; animation-delay: 0.5s;"></span><span class="hero-mote" style="width: 6px; height: 6px; left: 62%; bottom: 6%; animation-duration: 20s; animation-delay: 4s;"></span><span class="hero-mote" style="width: 5px; height: 5px; left: 75%; bottom: 10%; animation-duration: 15s; animation-delay: 2s;"></span><span class="hero-mote" style="width: 8px; height: 8px; left: 86%; bottom: 14%; animation-duration: 22s; animation-delay: 5s;"></span></div>
+    </section>
+
+    <!-- ABOUT & EDUCATION SECTION -->
+    <section id="about" class="sec" aria-label="About &amp; Education">
+      <div class="about-grid">
+        <div class="editorial-bio reveal in">
+          <span class="sec-label">01 / ABOUT ME</span>
+          <h2 class="editorial-title">
+            <span>Thoughtful design meets</span><br><strong>structured engineering.</strong>
+          </h2>
+          <p class="bio-text-primary" id="bio-intro-1">
+            Informatics Engineering student with two terms of experience as a member of the Student Council's Publication, Documentation, and Design (PDD) division. Proficient in managing visual information and digital communication.
+          </p>
+          <p class="bio-text-secondary" id="bio-intro-2">
+            Ready to contribute to a team, bringing strong adaptability and creativity.
+          </p>
+
+          <div class="metadata-strip">
+            <div class="meta-item">
+              <span class="meta-label">Based in</span>
+              <span class="meta-value" id="meta-city">Jakarta, Indonesia</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Focus</span>
+              <span class="meta-value">TypeScript &amp; Visual Design</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Email</span>
+              <a href="mailto:k34469207@gmail.com" class="meta-value" id="meta-email">k34469207@gmail.com</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- EDUCATION CARD -->
+        <div class="education-card reveal in">
+          <span class="sec-label">EDUCATION</span>
+          <div class="timeline" id="education-timeline">
+            <!-- Timeline items rendered dynamically / fallback -->
+            <div class="timeline-item">
+              <span class="period-badge">2026 – Present</span>
+              <h4>University (Undergraduate)</h4>
+              <div class="timeline-sub">Undergraduate — Informatics Engineering</div>
+              <p class="timeline-desc">Focusing on software development, TypeScript, and visual communication.</p>
+            </div>
+            <div class="timeline-item">
+              <span class="period-badge">Jun 2023 – Jun 2026</span>
+              <h4>MAS ATTAQWA</h4>
+              <div class="timeline-sub">Science Major</div>
+              <p class="timeline-desc">Active student leader in creative digital documentation and design.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE & RECOGNITION SECTION -->
+    <section id="experience" class="sec" style="border-top: 1px solid var(--border);" aria-label="Experience &amp; Recognition">
+      <div class="experience-grid">
+        <div class="reveal in">
+          <span class="sec-label">02 / EXPERIENCE</span>
+          <h2 class="editorial-title" style="font-size: clamp(30px, 3.5vw, 44px); margin-bottom: 28px;">
+            <span>Leadership &amp;</span> <strong>Creative Roles</strong>
+          </h2>
+          <div id="experience-list">
+            <div class="exp-row">
+              <span class="exp-date">Jul 2024 – Mei 2026</span>
+              <div class="exp-title">Publication, Documentation &amp; Design (PDD)</div>
+              <div class="exp-org" style="margin-bottom: 10px; font-weight: 500;">MAS Attaqwa Student Council</div>
+              <p class="exp-desc">
+                Served two terms managing visual information, event documentation, promotional assets, and digital communication across student council initiatives.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal in">
+          <span class="sec-label">03 / RECOGNITION</span>
+          <h2 class="editorial-title" style="font-size: clamp(30px, 3.5vw, 44px); margin-bottom: 28px;">
+            <span>Selected</span> <strong>Achievements</strong>
+          </h2>
+          <div id="achievements-list">
+            <div class="recognition-card">
+              <span class="rec-tag">Literary &amp; Creative Writing</span>
+              <h3 class="rec-title">Top 100 Best Short Story Writers</h3>
+              <p class="rec-detail">
+                Selected among 100 finalists out of thousands of participants in the Tangerang City Anniversary competition (Junior High School).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELECTED PROJECTS SECTION -->
+    <section id="projects" class="sec" style="border-top: 1px solid var(--border);" aria-label="Selected Projects">
+      <div class="projects-header reveal in">
+        <div>
+          <span class="sec-label">04 / SELECTED WORK</span>
+          <h2 class="editorial-title" style="font-size: clamp(34px, 4vw, 50px);">
+            <span>Featured</span> <strong>Projects</strong>
+          </h2>
+        </div>
+        <p style="font-size: 14.5px; color: var(--ink-muted); max-width: 320px;">
+          A curation of code, responsive design &amp; visual communication works.
+        </p>
+      </div>
+
+      <div class="projects-grid" id="projects-container">
+        <!-- Project 1 -->
+        <article class="proj-card reveal in">
+          <div class="proj-thumb"><span class="proj-tag-badge">2026</span><img src="https://lh3.googleusercontent.com/aida/ALJJyrA7wzszkeBaMSB3GhScg_v7H1eJs9rZYTns-x0FTXKbqk6w5HKrkI0PW9ru1fe9ZK__kPjZC3GyRFokYheXj32oaMqC8vLh4o_6WMMNgvzLJ-BsoxywuXuEahk7i9oecTf170QIzALCBOVBys2BXzwdX7fFjjB0xEvyS89d3ac6ht-WzbPEPyv6uy_IcYX5OsLjlz8LGH54XOYvdAx09nKVWkcfQskpJYdQOe2vkApf" alt="Personal Editorial Portfolio Artwork" class="proj-thumb-art" style="object-position: center 40%; filter: brightness(0.92) contrast(1.05);"><div style="position: absolute; inset: 0px; background: linear-gradient(rgba(7, 36, 26, 0.1) 0%, rgba(7, 36, 26, 0.55) 100%); display: flex; align-items: flex-end; padding: 22px; color: rgb(255, 255, 255); font-family: &quot;Cormorant Garamond&quot;, Georgia, serif; font-size: 26px; font-weight: 700; letter-spacing: -0.01em; text-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px;">Khansa · Portfolio</div></div>
+          <div class="proj-body">
+            <span class="proj-role">Front-End Engineering &amp; UI</span>
+            <h3 class="proj-title">Personal Editorial Portfolio</h3>
+            <p class="proj-tagline">
+              Calm, painterly aesthetic portfolio blending high-contrast editorial typography with responsive vanilla HTML/CSS and subtle ambient parallax effects.
+            </p>
+            <div class="pill-group">
+              <span class="pill-tag">TypeScript</span>
+              <span class="pill-tag">HTML5 &amp; CSS3</span>
+              <span class="pill-tag">Responsive UI</span>
+              <span class="pill-tag">Editorial Design</span>
+            </div>
+            <a href="#hero" class="proj-link">View Project Exploration →</a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="proj-card reveal in">
+          <div class="proj-thumb"><span class="proj-tag-badge">2024 – 2026</span><img src="https://lh3.googleusercontent.com/aida/ALJJyrA7wzszkeBaMSB3GhScg_v7H1eJs9rZYTns-x0FTXKbqk6w5HKrkI0PW9ru1fe9ZK__kPjZC3GyRFokYheXj32oaMqC8vLh4o_6WMMNgvzLJ-BsoxywuXuEahk7i9oecTf170QIzALCBOVBys2BXzwdX7fFjjB0xEvyS89d3ac6ht-WzbPEPyv6uy_IcYX5OsLjlz8LGH54XOYvdAx09nKVWkcfQskpJYdQOe2vkApf" alt="Student Council PDD Visual Archive Artwork" class="proj-thumb-art" style="object-position: center 75%; filter: saturate(1.15) brightness(0.85);"><div style="position: absolute; inset: 0px; background: linear-gradient(rgba(30, 58, 47, 0.15) 0%, rgba(30, 58, 47, 0.6) 100%); display: flex; align-items: flex-end; padding: 22px; color: rgb(255, 255, 255); font-family: &quot;Cormorant Garamond&quot;, Georgia, serif; font-size: 26px; font-weight: 700; letter-spacing: -0.01em; text-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px;">PDD · Visual Archive</div></div>
+          <div class="proj-body">
+            <span class="proj-role">Visual Direction &amp; Media</span>
+            <h3 class="proj-title">Student Council PDD Visual Archive</h3>
+            <p class="proj-tagline">
+              Comprehensive branding, digital event publication, and photographic documentation archive executed over two terms for student council events.
+            </p>
+            <div class="pill-group">
+              <span class="pill-tag">Editorial Layout</span>
+              <span class="pill-tag">Event Branding</span>
+              <span class="pill-tag">Digital Media</span>
+              <span class="pill-tag">Information Architecture</span>
+            </div>
+            <a href="#about" class="proj-link">Explore Design System →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="sec" style="border-top: 1px solid var(--border);" aria-label="Skills &amp; Capabilities">
+      <div class="skills-header reveal in">
+        <span class="sec-label">05 / CAPABILITIES</span>
+        <h2 class="editorial-title" style="font-size: clamp(34px, 4.2vw, 52px);">
+          <span>Tools, Code &amp;</span> <strong>Creative Craft</strong>
+        </h2>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Card 1 -->
+        <div class="bento-card reveal in">
+          <div class="bento-icon-badge" aria-hidden="true">&lt;/&gt;</div>
+          <h3>Development &amp; Technical</h3>
+          <div class="bento-pills">
+            <span class="bento-pill">TypeScript</span>
+            <span class="bento-pill">HTML5 &amp; CSS3</span>
+            <span class="bento-pill">Web Architecture</span>
+            <span class="bento-pill">Responsive Layout</span>
+            <span class="bento-pill">Vanilla JS</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bento-card reveal in">
+          <div class="bento-icon-badge" aria-hidden="true">◆</div>
+          <h3>Visual Design &amp; PDD</h3>
+          <div class="bento-pills">
+            <span class="bento-pill">Graphic Design</span>
+            <span class="bento-pill">Editorial Layout</span>
+            <span class="bento-pill">Event Documentation</span>
+            <span class="bento-pill">Digital Storytelling</span>
+            <span class="bento-pill">Brand Identity</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bento-card reveal in">
+          <div class="bento-icon-badge" aria-hidden="true">✦</div>
+          <h3>Teamwork &amp; Mindset</h3>
+          <div class="bento-pills">
+            <span class="bento-pill">Adaptability</span>
+            <span class="bento-pill">Creativity</span>
+            <span class="bento-pill">Cross-Team Communication</span>
+            <span class="bento-pill">Information Management</span>
+            <span class="bento-pill">Creative Writing</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="sec" style="padding-bottom: 90px;" aria-label="Contact">
+      <div class="contact-container reveal in">
+        <span class="sec-label">06 / CONTACT</span>
+        <h2 class="editorial-title contact-title">
+          <span>Let's create something</span> <strong>meaningful together.</strong>
+        </h2>
+        <p class="contact-subtitle">
+          Open for team collaborations, front-end development, and visual design opportunities.
+        </p>
+
+        <div class="contact-btn-row">
+          <a href="https://wa.me/6289525018595" target="_blank" rel="noopener noreferrer" class="btn-pill">
+            Chat on WhatsApp →
+          </a>
+          <a href="https://www.linkedin.com/in/khansa-shabihah-745b84433" target="_blank" rel="noopener noreferrer" class="btn-pill ghost">
+            LinkedIn Profile ↗
+          </a>
+          <a href="mailto:k34469207@gmail.com" class="btn-pill ghost">
+            Send Email
+          </a>
+        </div>
+
+        <div class="contact-bar" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div>© 2026 Khansa Shabihah. All rights reserved.</div>
+    <div>Jakarta, Indonesia · Informatics Engineering &amp; Design</div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    (function() {
+      // DEFAULT DATA FALLBACK
+      const DEFAULT_DATA = {
+        profil: {
+          full_name: "Khansa Shabihah",
+          nickname: "Khansa",
+          greeting: "Hello, I'm Khansa",
+          intro_1: "Informatics Engineering student with two terms of experience as a member of the Student Council's Publication, Documentation, and Design (PDD) division. Proficient in managing visual information and digital communication.",
+          intro_2: "Ready to contribute to a team, bringing strong adaptability and creativity.",
+          city: "Jakarta, Indonesia",
+          email: "k34469207@gmail.com"
+        },
+        pendidikan: [
+          {
+            degree: "Undergraduate — Informatics Engineering",
+            school: "University (Undergraduate)",
+            period: "2026 – Present",
+            note: "Focusing on software development, TypeScript, and visual communication."
+          },
+          {
+            degree: "Science Major",
+            school: "MAS ATTAQWA",
+            period: "Jun 2023 – Jun 2026",
+            note: "Active student leader in creative digital documentation and design."
+          }
+        ],
+        pengalaman: [
+          {
+            period: "Jul 2024 – Mei 2026",
+            position: "Publication, Documentation & Design (PDD)",
+            organization: "MAS Attaqwa Student Council",
+            summary: "Served two terms managing visual information, event documentation, and digital communication assets."
+          }
+        ],
+        achievements: [
+          {
+            title: "Top 100 Best Short Story Writers",
+            detail: "Selected among 100 finalists out of thousands of participants in the Tangerang City Anniversary competition (Junior High School)."
+          }
+        ],
+        contact: [
+          { label: "Chat on WhatsApp", url: "https://wa.me/6289525018595" },
+          { label: "LinkedIn Profile ↗", url: "https://www.linkedin.com/in/khansa-shabihah-745b84433" },
+          { label: "Send Email", url: "mailto:k34469207@gmail.com" }
+        ]
+      };
+
+      // INTERSECTION OBSERVER REVEAL
+      const observerOptions = {
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
+      };
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach(el => {
+        revealObserver.observe(el);
+      });
+
+      // KEYBOARD ACCESSIBILITY FOCUS INDICATOR
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+          document.body.classList.add('user-is-tabbing');
+        }
+      });
+    })();
+  </script>
+
+
+
+<span id="PING_CONTENT_PUSH_NOTIFICATION" style="display: none;"></span>
+
+</body></html>

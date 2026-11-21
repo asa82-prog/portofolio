@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #FFFFFF;
+  --bg-soft: #F7F8F6;
+  --bg-card-tint: #FAF9F5;
+  --surface: #FFFFFF;
+  --ink: #111315;
+  --ink-secondary: #42474E;
+  --ink-muted: #686D76;
+  --accent: #1E3A2F;
+  --accent-soft: #E8EFEA;
+  --accent-meadow: #7BA05B;
+  --accent-golden: #D4A359;
+  --border: rgba(17, 19, 21, 0.10);
+  --border-subtle: rgba(17, 19, 21, 0.08);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.65;
+}
+
+.font-serif-editorial {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.font-sans-editorial {
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.editorial-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.editorial-title .serif-light {
+  font-weight: 300;
+  font-style: italic;
+  color: #333A36;
+}
+
+.editorial-title strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+@keyframes valleyDrift {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.22) translate3d(0, 1.5%, 0);
+  }
+}
+
+.animate-valley-drift {
+  animation: valleyDrift 16s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform;
+  transform-origin: center 55%;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(110%) translateX(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-80px) translateX(35px);
+    opacity: 0;
+  }
+}
+
+.hero-mote {
+  position: absolute;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 245, 215, 0.4) 60%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  animation: floatUp linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-valley-drift,
+  .hero-mote {
+    animation: none !important;
+  }
+}
